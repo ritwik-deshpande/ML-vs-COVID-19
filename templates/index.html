@@ -47,7 +47,7 @@
                 <div class="card-heading"></div>
                 <div class="card-body">
                     <h2 class="title">Patient Details</h2>
-                    <form method="POST" action="/handle_data">
+                    <form name = "patient_form" onsubmit="return validateForm()" method="POST" action="/handle_data">
                             <div class="input-group">
                                 <input class="input--style-1" type="number" placeholder="Age of Patient" name="age">
                             </div>
@@ -65,7 +65,7 @@
                                 <div class="input-group">
                                     <div class="rs-select2 js-select-simple select--no-search">
                                         <select name="gender">
-                                            <option disabled="disabled" selected="selected">Gender</option>
+                                            <option value = "" disabled="disabled" selected="selected">Gender</option>
                                             <option value="M" >Male</option>
                                             <option value="F">Female</option>
                                             
@@ -78,10 +78,10 @@
                             <div class="input-group">
                                  <p >Select the Symptoms of the Patient:</p>
                                 <div class="checkbox">
-                                  <label><input type="checkbox" name= "Symptoms" value="Fever">Fever</label>
+                                  <label><input type="checkbox" name= "Symptoms" value="highfever">Fever</label>
                                 </div>
                                 <div class="checkbox">
-                                  <label><input type="checkbox" name= "Symptoms" value="Dry Cough">Dry Cough</label>
+                                  <label><input type="checkbox" name= "Symptoms" value="drycough">Dry Cough</label>
                                 </div>
                                 <div class="checkbox">
                                   <label><input type="checkbox" name= "Symptoms" value="Headache">Headache</label>
@@ -182,6 +182,74 @@
     <script src="static/vendor/datepicker/daterangepicker.js"></script>
 
     <!-- Main JS-->
+    <script>
+
+    var date_diff_indays = function(date2) {
+        dt1 = new Date();
+        dt2 = new Date(date2);
+        return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
+        }
+
+    function validateForm() {
+      var x = document.forms["patient_form"]["age"].value;
+
+
+      console.log(document.forms["patient_form"]["age"].value)
+      console.log(document.forms["patient_form"]["notes"].value)
+      console.log(document.forms["patient_form"]["detected_state"].value)
+      console.log(document.forms["patient_form"]["Symptoms"].value)
+      console.log(document.forms["patient_form"]["diagnosed_date"].value)
+
+     
+
+      if (document.forms["patient_form"]["age"].value == "" || document.forms["patient_form"]["notes"].value == ""|| document.forms["patient_form"]["detected_state"].value == "" || document.forms["patient_form"]["diagnosed_date"].value==""  || document.forms["patient_form"]["gender"].value == "" ) {
+
+
+
+        
+
+        
+        alert("All fields must be filled out");
+        return false;
+      }
+
+     var date2 = document.forms["patient_form"]["diagnosed_date"].value
+
+     var i = 0
+     var day = ""
+     var month = ""
+     var year = ""
+     while(date2[i]!='/'){
+        day = day + date2[i]
+        i++;
+     }
+     i++;
+     while(date2[i]!='/'){
+        month = month + date2[i]
+        i++;
+     }
+     i++;
+     while(i<date2.length){
+        year = year + date2[i]
+        i++;
+     }
+     
+     date2 = month +'/' +day + '/'+ year
+
+     console.log(date2)
+     console.log(date_diff_indays(date2.toString()))
+
+
+      
+
+     
+      if(date_diff_indays(date2) > 0){
+        alert("Diagnosed date should be before current date");
+        return false; 
+      }
+
+    }
+    </script>
     <script src="static/js/global.js"></script>
 
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->

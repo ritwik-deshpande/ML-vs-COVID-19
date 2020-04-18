@@ -20,7 +20,7 @@ M,Kerala,Recovered,"Travelled from Dubai, SG 54",2,2,high_risk,No flu Symptoms,S
 M,Kerala,Recovered,Travelled from Qatar,2,2,high_risk,No flu Symptoms,Suspect,1
 M,Kerala,Recovered,"Travelled from Italy, Italian national stayed in a resort at Varkala",2,2,high_risk,No flu Symptoms,Suspect,1
 M,Kerala,Recovered,"Travelled from Dubai, has visited Italy",2,3,high_risk,"mild fever,cold,flu,dizzyness,strong headache,dehydration",Suspect,1
-M,Kerala,Recovered,Travelled from London via Bahrain ,2,-3,high_risk,No flu Symptoms,Suspect,
+M,Kerala,Recovered,Travelled from London via Bahrain ,2,-3,high_risk,No flu Symptoms,Suspect,2
 M,Kerala,Recovered,"Travelled from Dubai, British citizen who had resided in Munnar resort",2,2,high_risk,No flu Symptoms,Suspect,1
 M,Kerala,Recovered,"Travelled from Spain, Doctor",2,3,high_risk,mild fever,Suspect,1
 M,Kerala,Hospitalized,Travelled from Middle East,2,0,high_risk,No flu Symptoms,Suspect,1

@@ -14,13 +14,13 @@ import pickle
 encodings = dict()
 def getSymptomCategory(symptoms):
 	index = {
-	    'suspect':['mild fever','cold','flu','dizzyness','strong headache','dehydration'],
+	    'suspect':['fever','cold','flu','dizzyness','strong headache','dehydration'],
 	    'high_risk':['dry cough','breathlessness','high fever']
 	}
 
 
-	for word in symptoms.strip().split():
-		word = word.lower().strip(',')
+	for word in symptoms.strip(',').split(','):
+		word = word.lower()
 		if word in index['suspect']:
 			return 'Suspect'
 		elif word in index['high_risk']:

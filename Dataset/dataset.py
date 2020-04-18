@@ -76,7 +76,9 @@ if __name__ == '__main__':
 
 	print(df.head())
 
-	df['Symptoms'] = df['category']
+	patient_df = pd.read_csv('patient_symptoms.csv')
+
+	df['Symptoms'] = patient_df['Symptoms']
 	df['Symptoms_category'] = df['category']
 
 	index = {
@@ -84,32 +86,20 @@ if __name__ == '__main__':
 	    'high_risk':['dry cough','breathlessness','high fever']
 	}
 
+
+	print('The symptoms are',df['Symptoms'])
 	
 
-	for i,symptom in enumerate(df['Symptoms']):
-		if df['category'][i] == 1:
-			df['Symptoms_category'][i] = 'High_risk'
-			no_of_symptoms = int(random()*100%4)
-			symptoms = ''
-			for j in range(0,no_of_symptoms):
-				symptoms = symptoms + index['high_risk'][j] + ','
-			    
-			symptoms = symptoms[:-1]
-			df['Symptoms'][i] = symptoms
+	for i,symptom in enumerate(df['Symptoms'].astype('str')):
+		df['Symptoms_category'][i] = 3
+		for word in symptom.split(','):
+			if word in index['high_risk']:
+				df['Symptoms_category'][i] = 1
+				break
+			if word in index['suspect']:
+				df['Symptoms_category'][i] = 2
+				break
 
-		elif df['category'][i] == 2:
-	    	df['Symptoms_category'] = 'Suspect'
-	    	no_of_symptoms = int(random()*100%7)
-	    	symptoms = ''
-	    	for j in range(0,no_of_symptoms):
-				symptoms = symptoms + index['suspect'][j] + ','
-	            
-			symptoms = symptoms[:-1]
-	        df['Symptoms'][i] = symptoms
-	        
-	    else:
-			df['Symptoms'][i] = 'No flu Symptoms'
-			df['Symptoms_category'][i] = 'Safe'
 	        
 	        
 	df.head()

@@ -17,7 +17,7 @@ def handle_data():
 	detected_state =  request.form['detected_state']
 	symptoms = ''
 	for symptom in request.form.getlist('Symptoms'):
-		symptoms = symptoms + ' ' + symptom 
+		symptoms = symptoms + ',' + symptom 
 
 	diagnosed_date = request.form['diagnosed_date']
 	notes = request.form['notes'] 

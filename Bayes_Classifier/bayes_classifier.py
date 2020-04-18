@@ -8,7 +8,10 @@ from sklearn import metrics
 from sklearn import preprocessing
 from flask import Flask,render_template
 from datetime import date,datetime
+import pickle
 
+
+encodings = dict()
 def getSymptomCategory(symptoms):
 	index = {
 	    'suspect':['mild fever','cold','flu','dizzyness','strong headache','dehydration'],
@@ -48,7 +51,8 @@ def getNotesCategory(notes):
 def encode(df):
 
 	le = preprocessing.LabelEncoder()
-	encodings = dict()
+	global encodings
+	#encodings = dict()
 
 	df['gender'] = le.fit_transform(df['gender'])
 	gender_mapping = dict(zip(le.classes_, le.transform(le.classes_)))
@@ -68,22 +72,17 @@ def encode(df):
 
 	print(encodings)
 	df.head()
-	return encodings
+	return
 
 
 def trainModel():
-	return 
 
-
-    
-def predict(gender,age,notes,detected_state,symptoms,diagnosed_date):
-
-
+	global encodings
 	df = pd.read_csv('Dataset/dataset.csv')
 	df = df.drop(['Symptoms','notes','current_status'], axis = 1)
 	df = df[df.days_to_change >= 0]
 	
-	encodings = encode(df)
+	encode(df)
 
 	X = df.loc[:,:'Symptoms_category']
 	y = df['category'] 
@@ -92,14 +91,32 @@ def predict(gender,age,notes,detected_state,symptoms,diagnosed_date):
 	X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=1) 
 	  
 	# training the model on training set 
-	gnb = MultinomialNB() 
-	gnb.fit(X_train, y_train) 
+	mnb = MultinomialNB() 
+	mnb.fit(X_train, y_train) 
 	  
 	# making predictions on the testing set 
-	y_pred = gnb.predict(X_test) 
+	y_pred = mnb.predict(X_test) 
 	  
 	# comparing actual response values (y_test) with predicted response values (y_pred) 
 	print("Gaussian Naive Bayes model accuracy(in %):", metrics.accuracy_score(y_test, y_pred)*100)
+
+	
+	# save the classifier
+	with open('my_dumped_classifier.pkl', 'wb') as fid:
+
+		pickle.dump(mnb, fid)
+
+	return
+
+
+    
+def predict(gender,age,notes,detected_state,symptoms,diagnosed_date):
+
+
+	#fetch the saved trained model from the pickel file
+	global encodings
+	with open('my_dumped_classifier.pkl', 'rb') as fid:
+		mnb = pickle.load(fid)
 
 	current_time = datetime.now()
 
@@ -115,6 +132,6 @@ def predict(gender,age,notes,detected_state,symptoms,diagnosed_date):
 	print(days_to_change)
 	test = [[encodings['gender'][gender], encodings['state'][detected_state],age,days_to_change,encodings['notes'][getNotesCategory(notes)],encodings['symptoms'][getSymptomCategory(symptoms)],]]
 	print(test)
-	print(gnb.predict(test))
+	print(mnb.predict(test))
 
-	return gnb.predict(test)
+	return mnb.predict(test)

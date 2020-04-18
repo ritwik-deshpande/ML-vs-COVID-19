@@ -1,12 +1,14 @@
 from flask import Flask,render_template,request
 from Bayes_Classifier import predict
+from Bayes_Classifier import trainModel
 
 
 app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return render_template('index.html' ,category = "None")
+	trainModel()
+	return render_template('index.html' ,category = "None")
     
 @app.route("/handle_data",methods = ['POST'])
 def handle_data():
@@ -21,7 +23,7 @@ def handle_data():
 	notes = request.form['notes'] 
 	age = request.form['age']
 	category = predict(gender,age,notes,detected_state,symptoms,diagnosed_date)[0]
-
+	print(str(category))
 
 
 	return render_template('index.html' ,category = str(category))

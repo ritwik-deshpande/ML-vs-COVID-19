@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>Patient Classifier</title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+    <link href="static/css/main.css" rel="stylesheet" media="all">
+     <!-- Vendor CSS-->
+    <link href="static/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="static/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+
+
+   
+    <!-- Icons font CSS-->
+    <link href="static/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="static/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+
+   
+    <!-- Main CSS-->
+    
+</head>
+
+<body>
+     {% if category == "None" %}
+    <div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo">
+        <div class="wrapper wrapper--w680">
+           
+            <div class="page-header font-robo">
+            <h2>Classifying Patients into 3 Categories based on their Symptoms</h2>      
+          </div>
+            <div class="card card-1">
+                <div class="card-heading"></div>
+                <div class="card-body">
+                    <h2 class="title">Patient Details</h2>
+                    <form method="POST" action="/handle_data">
+                            <div class="input-group">
+                                <input class="input--style-1" type="number" placeholder="Age of Patient" name="age">
+                            </div>
+                            <div class="input-group">
+                                <textarea class="input--style-1" type="text" placeholder="Travel History" name="notes"></textarea>
+                            </div>
+                        
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1 js-datepicker" type="text" placeholder="Diagnosed Date" name="diagnosed_date">
+                                    <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select name="gender">
+                                            <option disabled="disabled" selected="selected">Gender</option>
+                                            <option value="M" >Male</option>
+                                            <option value="F">Female</option>
+                                            
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="input-group">
+                                 <p >Select the Symptoms of the Patient:</p>
+                                <div class="checkbox">
+                                  <label><input type="checkbox" name= "Symptoms" value="Fever">Fever</label>
+                                </div>
+                                <div class="checkbox">
+                                  <label><input type="checkbox" name= "Symptoms" value="Dry Cough">Dry Cough</label>
+                                </div>
+                                <div class="checkbox">
+                                  <label><input type="checkbox" name= "Symptoms" value="Headache">Headache</label>
+                                </div>
+                                <div class="checkbox">
+                                  <label><input type="checkbox" name= "Symptoms" value="breathlessness">Breathless</label>
+                                </div>
+                                <div class="checkbox">
+                                  <label><input type="checkbox" name= "Symptoms" value="cold">Cold</label>
+                                </div>
+                                <div class="checkbox">
+                                  <label><input type="checkbox" name= "Symptoms" value="other">Other</label>
+                                </div>
+                               
+                            </div>
+                            <div class="input-group">
+                                <div class="rs-select2 js-select-simple select--no-search">
+                                    <select name="detected_state">
+                                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                        <option value="Assam">Assam</option>
+                                        <option value="Bihar">Bihar</option>
+                                        <option value="Chandigarh">Chandigarh</option>
+                                        <option value="Chhattisgarh">Chhattisgarh</option>
+                                        <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                                        <option value="Daman and Diu">Daman and Diu</option>
+                                        <option value="Delhi">Delhi</option>
+                                        <option value="Lakshadweep">Lakshadweep</option>
+                                        <option value="Puducherry">Puducherry</option>
+                                        <option value="Goa">Goa</option>
+                                        <option value="Gujarat">Gujarat</option>
+                                        <option value="Haryana">Haryana</option>
+                                        <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                        <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                        <option value="Jharkhand">Jharkhand</option>
+                                        <option value="Karnataka">Karnataka</option>
+                                        <option value="Kerala">Kerala</option>
+                                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                        <option value="Maharashtra">Maharashtra</option>
+                                        <option value="Manipur">Manipur</option>
+                                        <option value="Meghalaya">Meghalaya</option>
+                                        <option value="Mizoram">Mizoram</option>
+                                        <option value="Nagaland">Nagaland</option>
+                                        <option value="Odisha">Odisha</option>
+                                        <option value="Punjab">Punjab</option>
+                                        <option value="Rajasthan">Rajasthan</option>
+                                        <option value="Sikkim">Sikkim</option>
+                                        <option value="Tamil Nadu">Tamil Nadu</option>
+                                        <option value="Telangana">Telangana</option>
+                                        <option value="Tripura">Tripura</option>
+                                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                        <option value="Uttarakhand">Uttarakhand</option>
+                                        <option value="West Bengal">West Bengal</option>
+                                    </select>
+                                    <div class="select-dropdown"></div>
+                                </div>
+                            </div>
+                        
+                        <div class="p-t-20">
+                            <button class="btn btn--radius btn--green" type="submit">Submit</button>
+                        </div>
+                    </form>
+
+                    {% else %}
+                    <div class="container font-robo">
+                      <h2>Out of the three Categories our Model has given the following result:</h2>
+
+                      <br/>
+                      <br/>
+                      <div class="list-group">
+
+                        {% if category == "1" %}
+                        <a href="#" class="list-group-item list-group-item-action active">High Risk</a>
+                        <a href="#" class="list-group-item list-group-item-action">Suspected</a>
+                        <a href="#" class="list-group-item list-group-item-action">Safe</a>
+                        {% elif category == "2" %}
+                        <a href="#" class="list-group-item list-group-item-action ">High Risk</a>
+                        <a href="#" class="list-group-item list-group-item-action active">Suspected </a>
+                        <a href="#" class="list-group-item list-group-item-action">Safe</a>
+
+                        {% else %}
+                        <a href="#" class="list-group-item list-group-item-action ">High Risk</a>
+                        <a href="#" class="list-group-item list-group-item-action">Suspected </a>
+                        <a href="#" class="list-group-item list-group-item-action active">Safe</a>
+                        {% endif%}
+                      </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <!-- Jquery JS-->
+    <script src="static/vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="static/vendor/select2/select2.min.js"></script>
+    <script src="static/vendor/datepicker/moment.min.js"></script>
+    <script src="static/vendor/datepicker/daterangepicker.js"></script>
+
+    <!-- Main JS-->
+    <script src="static/js/global.js"></script>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
+<!-- end document-->

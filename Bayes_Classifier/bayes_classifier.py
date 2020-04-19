@@ -71,7 +71,7 @@ def encode(df):
 	encodings['state'] = state_mapping
 
 	print(encodings)
-	df.head()
+	print(df.head())
 	return
 
 
@@ -84,8 +84,11 @@ def trainModel():
 	
 	encode(df)
 
-	X = df.loc[:,:'Symptoms_category']
+	
+
+	X = df.loc[:,'gender':'Symptoms_category']
 	y = df['category'] 
+
 
 	# splitting X and y into training and testing sets 
 	X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=1) 
@@ -95,6 +98,8 @@ def trainModel():
 	mnb.fit(X_train, y_train) 
 	  
 	# making predictions on the testing set 
+	print(X_test.shape)
+
 	y_pred = mnb.predict(X_test) 
 	  
 	# comparing actual response values (y_test) with predicted response values (y_pred) 
@@ -129,8 +134,7 @@ def predict(gender,age,notes,detected_state,symptoms,diagnosed_date):
 	age = int(age)//10
 
 	days_to_change = (current_date - diagnosed_date).days//5
-	print(days_to_change)
-	test = [[encodings['gender'][gender], encodings['state'][detected_state],age,days_to_change,encodings['notes'][getNotesCategory(notes)],encodings['symptoms'][getSymptomCategory(symptoms)],]]
+	test = [[encodings['gender'][gender], encodings['state'][detected_state],age,days_to_change,encodings['notes'][getNotesCategory(notes)],encodings['symptoms'][getSymptomCategory(symptoms)]]]
 	print(test)
 	print(mnb.predict(test))
 

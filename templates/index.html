@@ -76,15 +76,16 @@
                             </div>
                         
                             <div class="input-group">
-                                 <p >Select the Symptoms of the Patient:</p>
+                                <h4> Select the Symptoms of the Patient:</h4>
+                                <br/>
                                 <div class="checkbox">
-                                  <label><input type="checkbox" name= "Symptoms" value="highfever">Fever</label>
+                                  <label><input type="checkbox" name= "Symptoms" value="fever">Fever</label>
                                 </div>
                                 <div class="checkbox">
-                                  <label><input type="checkbox" name= "Symptoms" value="drycough">Dry Cough</label>
+                                  <label><input type="checkbox" name= "Symptoms" value="dry cough">Dry Cough</label>
                                 </div>
                                 <div class="checkbox">
-                                  <label><input type="checkbox" name= "Symptoms" value="Headache">Headache</label>
+                                  <label><input type="checkbox" name= "Symptoms" value="headache">Headache</label>
                                 </div>
                                 <div class="checkbox">
                                   <label><input type="checkbox" name= "Symptoms" value="breathlessness">Breathless</label>
@@ -98,6 +99,8 @@
                                
                             </div>
                             <div class="input-group">
+                                <h4> Location of Patient(State):</h4>
+                                <br/>
                                 <div class="rs-select2 js-select-simple select--no-search">
                                     <select name="detected_state">
                                         <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -152,11 +155,11 @@
                       <br/>
                       <div class="list-group">
 
-                        {% if category == "1.0" %}
+                        {% if category == "1" or category == "1.0" %}
                         <a href="#" class="list-group-item list-group-item-action active">High Risk</a>
                         <a href="#" class="list-group-item list-group-item-action">Suspected</a>
                         <a href="#" class="list-group-item list-group-item-action">Safe</a>
-                        {% elif category == "2.0" %}
+                        {% elif category == "2" or category == "2.0" %}
                         <a href="#" class="list-group-item list-group-item-action ">High Risk</a>
                         <a href="#" class="list-group-item list-group-item-action active">Suspected </a>
                         <a href="#" class="list-group-item list-group-item-action">Safe</a>

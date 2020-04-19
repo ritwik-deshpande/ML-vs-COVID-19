@@ -46,8 +46,7 @@ if __name__ == '__main__':
 	df.head()
 	df.dtypes
 
-	df['category'] = df.apply(lambda row : assignCat(row), axis = 1) 
-	df.head()
+	
 
 
 	df['notes_category'] =  df['notes']
@@ -79,7 +78,7 @@ if __name__ == '__main__':
 	patient_df = pd.read_csv('patient_symptoms.csv')
 
 	df['Symptoms'] = patient_df['Symptoms']
-	df['Symptoms_category'] = df['category']
+	df['Symptoms_category'] = df['notes_category']
 
 	index = {
 	    'suspect':['mild fever','cold','flu','dizzyness','strong headache','dehydration'],
@@ -91,16 +90,25 @@ if __name__ == '__main__':
 	
 
 	for i,symptom in enumerate(df['Symptoms'].astype('str')):
-		df['Symptoms_category'][i] = 3
+		df['Symptoms_category'][i] = 'Safe'
 		for word in symptom.split(','):
 			if word in index['high_risk']:
-				df['Symptoms_category'][i] = 1
+				df['Symptoms_category'][i] = 'High_risk'
 				break
 			if word in index['suspect']:
-				df['Symptoms_category'][i] = 2
+				df['Symptoms_category'][i] = 'Suspect'
 				break
 
 	        
 	        
+	
+
+	df['category'] = df.apply(lambda row : assignCat(row), axis = 1) 
+	df.head()
+
+
+	category_df = pd.read_csv('category.csv')
+	df['category'] = category_df['category']
+
 	df.head()
 	df.to_csv('dataset.csv') 

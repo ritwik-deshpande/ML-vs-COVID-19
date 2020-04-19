@@ -8,14 +8,6 @@ from sklearn import preprocessing
 import re
 from random import random
 
-def assignCat(row) :
-    
-    if row['days_to_change'] > 2 and row['current_status'] == "Recovered" : 
-        return 2
-    elif row['current_status'] == "Deceased":
-        return 1
-    else :
-        return 3
 
 if __name__ == '__main__':
 	pop_df = pd.read_csv('population_india_census2011.csv')
@@ -98,13 +90,6 @@ if __name__ == '__main__':
 			if word in index['suspect']:
 				df['Symptoms_category'][i] = 'Suspect'
 				break
-
-	        
-	        
-	
-
-	df['category'] = df.apply(lambda row : assignCat(row), axis = 1) 
-	df.head()
 
 
 	category_df = pd.read_csv('category.csv')

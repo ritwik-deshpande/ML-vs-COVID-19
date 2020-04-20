@@ -21,7 +21,7 @@ To execute directly from the terminal
 1. Navigate to the ML-vs-COVID-19 directory to the directory where naive_bayes is stored. 
 2. Run the ​ command 
 
-    naive_bayes.py
+    python naive_bayes.py
  
 3. Enter the required input. You can take help from the Sample_Inputs file.
 

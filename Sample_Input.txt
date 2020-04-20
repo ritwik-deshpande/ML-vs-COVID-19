@@ -1,0 +1,5 @@
+M	21		Travelled from Wuhan	Kerala			cold,cough,fever			8/4/2020
+M	22		Travelled from Wuhan	Kerala			cold,dry cough,high fever	8/4/2020
+F 	60		none					Maharashtra		dry cough,fever				10/4/2020
+F 	60		none 					Delhi			none						20/4/2020
+M 	16		none					Maharashtra 	cold						10/4/2020
